@@ -1,0 +1,23 @@
+module mux #(
+        parameter   [31:0]  W_WIDTH_SYS     =   32  ,
+        parameter   [31:0]  N_NUMB_CPU      =   3   
+    ) 
+    (
+        input                                                   clk             ,
+        input                                                   rstn            ,
+        input           [N_NUMB_CPU-1 : 0]  [0:0]               req_i           ,
+        input           [N_NUMB_CPU-1 : 0]  [W_WIDTH_SYS-1:0]   addr_i          ,
+        input           [N_NUMB_CPU-1 : 0]  [W_WIDTH_SYS-1:0]   data_i          ,
+        input           [N_NUMB_CPU-1 : 0]  [0:0]               write_i         ,
+        output  reg     [N_NUMB_CPU-1: 0]                       mux_err_o       ,
+        output  reg     [N_NUMB_CPU-1: 0]                       mux_req_o       ,
+        output  reg     [W_WIDTH_SYS-1: 0]                      mux_addr_o      ,
+        output  reg     [W_WIDTH_SYS-1: 0]                      mux_data_o      ,
+        output  reg                                             mux_write_o     ,
+        output  reg     [31:0]                                  mux_numb_cpu_o  ,
+        input           [W_WIDTH_SYS-1: 0]                      rdata_i         ,
+        output  reg     [N_NUMB_CPU-1 : 0]  [W_WIDTH_SYS-1: 0]  mux_rdata_o     ,
+        input                                                   mux_err_i       ,
+        input           [N_NUMB_CPU-1 : 0]                      ack_i           ,
+        output  reg     [N_NUMB_CPU-1 : 0]                      mux_ack_o   
+    );
